@@ -1,0 +1,28 @@
+﻿ALTER DATABASE [blpDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+
+USE master
+
+DROP DATABASE blpDB
+
+CREATE DATABASE blpDB
+
+USE blpDB
+
+CREATE TABLE [dbo].[Users]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+	[FirstName] NVARCHAR(50) NOT NULL, 
+	[LastName] NVARCHAR(50) NOT NULL, 
+	[Email] NVARCHAR(50) NOT NULL, 
+	[Password] NVARCHAR(50) NOT NULL --Password will be stored in readable format HASHTYPES & SALT
+)
+
+CREATE TABLE [dbo].[Places]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Name] NVARCHAR(50) NOT NULL,
+	[Country] NVARCHAR(50) NOT NULL, 
+	[Description] NVARCHAR(MAX) NULL, 
+	[Xcoord] FLOAT NULL, 
+	[Ycoord] FLOAT NULL,
+)

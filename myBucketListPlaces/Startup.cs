@@ -16,22 +16,33 @@ namespace myBucketListPlaces
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            //ToDo Lägga till services för EF
+            //ToDo Lägga till connection sträng till databasen. Hur ska den skyddas när jag pushar till GitHub?
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
+            //loggerFactory.AddConsole();
+
+            app.UseStaticFiles();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            //ToDo Lägga till olika script för dev och för prod..
+            //ToDo hasha & salta lösenordslagring
+
+
+            app.UseMvcWithDefaultRoute();
+
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
         }
     }
 }
