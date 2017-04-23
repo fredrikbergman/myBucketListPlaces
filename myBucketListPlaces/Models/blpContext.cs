@@ -24,5 +24,20 @@ namespace myBucketListPlaces.Models
                 Country = p.Country
             }).ToArray();
         }
+
+        internal PlacesIndexVM GetPlace(int id)
+        {
+            PlacesIndexVM placesIndexVM = new PlacesIndexVM();
+
+            var place = Place.FirstOrDefault(p => p.Id == id);
+
+            placesIndexVM.Name = place.Name;
+            placesIndexVM.Country = place.Country;
+            placesIndexVM.Description = place.Description;
+            placesIndexVM.Lat = place.Lat;
+            placesIndexVM.Long = place.Long;
+
+            return placesIndexVM;
+        }
     }
 }

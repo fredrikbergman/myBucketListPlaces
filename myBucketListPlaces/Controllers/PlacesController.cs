@@ -22,5 +22,10 @@ namespace myBucketListPlaces.Controllers
         {
             return View(context.GetAllPlaces());
         }
+
+        public IActionResult Details(int Id)
+        {
+            return View(context.GetPlace(Id));
+        }
     }
 }
