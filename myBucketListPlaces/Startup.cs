@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using myBucketListPlaces.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace myBucketListPlaces
 {
@@ -16,9 +19,12 @@ namespace myBucketListPlaces
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables();
+            var Configuration = builder.Build();
+
+            services.AddDbContext<blpContext>(options => options.UseSqlServer(Configuration.GetConnectionString("blpDatabase")));
+
             services.AddMvc();
-            //ToDo Lägga till services för EF
-            //ToDo Lägga till connection sträng till databasen. Hur ska den skyddas när jag pushar till GitHub?
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

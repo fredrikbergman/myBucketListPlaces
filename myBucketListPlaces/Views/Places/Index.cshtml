@@ -1,0 +1,15 @@
+﻿@using myBucketListPlaces.Models
+@model IEnumerable<PlacesIndexVM>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> </title>
+</head>
+<body>
+    @foreach (var item in Model)
+    {
+        <p>@item.Name, @item.Country</p>
+    }
+</body>
+</html>
