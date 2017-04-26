@@ -8,7 +8,9 @@ CREATE DATABASE blpDB
 
 USE blpDB
 
-CREATE TABLE [dbo].[User]
+--CREATE SCHEMA blp --Kan inte köras i script. Måste exekveras separat..
+
+CREATE TABLE [blp].[User]
 (
 	[Id]		INT NOT NULL PRIMARY KEY IDENTITY (1, 1), 
 	[FirstName] NVARCHAR(50) NOT NULL, 
@@ -17,7 +19,7 @@ CREATE TABLE [dbo].[User]
 	[Password]	NVARCHAR(50) NOT NULL --Password will be stored in readable format HASHTYPES & SALT
 )
 
-CREATE TABLE [dbo].[Place] (
+CREATE TABLE [blp].[Place] (
 	[Id]          INT            IDENTITY (1, 1) NOT NULL,
 	[UserId]      INT            NOT NULL,
 	[Name]        NVARCHAR (50)  NOT NULL,
@@ -29,7 +31,7 @@ CREATE TABLE [dbo].[Place] (
 	CONSTRAINT [FK_Place_ToUser] FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
 );
 
-CREATE TABLE [dbo].[Link] (
+CREATE TABLE [blp].[Link] (
 	[Id]		INT IDENTITY (1, 1) NOT NULL,
 	[PlaceId]	INT NOT NULL,
 	[Link]		NVARCHAR (MAX) NOT NULL,
@@ -37,7 +39,7 @@ CREATE TABLE [dbo].[Link] (
 	CONSTRAINT [FK_Link_ToPlace] FOREIGN KEY ([PlaceId]) REFERENCES [dbo].[Place] ([Id])
 );
 
-CREATE TABLE [dbo].[Image] (
+CREATE TABLE [blp].[Image] (
 	[Id]		INT IDENTITY (1, 1) NOT NULL,
 	[ImageId]	INT NOT NULL,
 	[ImageName]		NVARCHAR (MAX) NOT NULL,

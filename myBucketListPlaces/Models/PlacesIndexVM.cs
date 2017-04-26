@@ -13,6 +13,8 @@ namespace myBucketListPlaces.Models
         public string Description { get; set; }
         public double? Lat { get; set; }
         public double? Long { get; set; }
+        public int Id { get; set; }
+
 
         //public virtual ICollection<Image> Images { get; set; }
         //public virtual ICollection<Link> Links { get; set; }

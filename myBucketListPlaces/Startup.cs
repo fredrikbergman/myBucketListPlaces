@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using myBucketListPlaces.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace myBucketListPlaces
 {
@@ -19,8 +20,13 @@ namespace myBucketListPlaces
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //appsettings.json finns inte i projektet, utan ligger i /bin/debug
             var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables();
             var Configuration = builder.Build();
+
+            services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("blpDatabase")));
+
+
 
             services.AddDbContext<blpContext>(options => options.UseSqlServer(Configuration.GetConnectionString("blpDatabase")));
 

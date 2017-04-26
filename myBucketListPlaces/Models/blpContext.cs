@@ -21,7 +21,8 @@ namespace myBucketListPlaces.Models
             return Place.Select(p => new PlacesIndexVM
             {
                 Name = p.Name,
-                Country = p.Country
+                Country = p.Country,
+                Id = p.Id 
             }).ToArray();
         }
 
@@ -36,6 +37,7 @@ namespace myBucketListPlaces.Models
             placesIndexVM.Description = place.Description;
             placesIndexVM.Lat = place.Lat;
             placesIndexVM.Long = place.Long;
+            placesIndexVM.Id = place.Id;
 
             return placesIndexVM;
         }
